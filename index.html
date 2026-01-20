@@ -325,6 +325,24 @@
         .accordion-button:not(.collapsed) { background: transparent; color: var(--gold-primary); box-shadow: none; }
         .accordion-button::after { filter: invert(1); }
 
+        #wDate {
+        /* Ensures the selected date is white */
+          color: #ffffff; 
+        
+        /* Tells the browser's native date picker to use a dark theme */
+          color-scheme: dark; 
+        }
+
+        /* Ensures the placeholder 'Date' text is visible but distinct */
+        #wDate::placeholder {
+            color: #a0a0a0; 
+        }
+
+        /* Fix for WebKit browsers to vertically align text if it looks off */
+        #wDate::-webkit-date-and-time-value { 
+            text-align: left; 
+        }
+
         /* Responsive */
         @media (max-width: 991px) {
             .hero-title { font-size: 3.5rem; }
@@ -618,7 +636,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
-                                    <input type="date" id="wDate" placeholder="Date" class="form-control" required>
+                                    <input 
+                                        type="text" 
+                                        id="wDate" 
+                                        placeholder="Date" 
+                                        class="form-control" 
+                                        required
+                                        onfocus="(this.type='date')"
+                                        onblur="if(!this.value)this.type='text'"
+                                    >
                                 </div>
                                 <div class="col-sm-6 mb-3">
                                     <select id="wGuests" class="form-select">
